@@ -1,5 +1,11 @@
 use crate::{InterceptedMetricsSvc, RawClientLike, WorkflowService};
 use anyhow::{anyhow, bail};
+use async_stream::try_stream;
+use futures::Stream;
+use std::sync::{
+    Arc,
+    atomic::{AtomicBool, Ordering},
+};
 use std::{fmt::Debug, marker::PhantomData};
 use temporal_sdk_core_protos::{
     coresdk::FromPayloadsExt,
@@ -7,6 +13,7 @@ use temporal_sdk_core_protos::{
         common::v1::{Payload, WorkflowExecution},
         enums::v1::HistoryEventFilterType,
         failure::v1::Failure,
+        history::v1::HistoryEvent,
         history::v1::history_event::Attributes,
         workflowservice::v1::GetWorkflowExecutionHistoryRequest,
     },
@@ -204,6 +211,54 @@ where
                     o
                 )),
             };
+        }
+    }
+
+    /// Watch the workflow execution events
+    pub fn watch_events(
+        &self,
+        _opts: GetWorkflowResultOpts,
+        cancellation_token: Arc<AtomicBool>,
+    ) -> impl Stream<Item = Result<HistoryEvent, anyhow::Error>> + '_ {
+        try_stream! {
+            let mut next_page_tok = vec![];
+            let run_id = self.info.run_id.clone().unwrap_or_default();
+            loop {
+                if cancellation_token.load(Ordering::Relaxed) {
+                    break;
+                }
+                let server_res = self
+                    .client
+                    .clone()
+                    .get_workflow_execution_history(GetWorkflowExecutionHistoryRequest {
+                        namespace: self.info.namespace.to_string(),
+                        execution: Some(WorkflowExecution {
+                            workflow_id: self.info.workflow_id.clone(),
+                            run_id: run_id.clone(),
+                        }),
+                        skip_archival: true,
+                        wait_new_event: true,
+                        history_event_filter_type: HistoryEventFilterType::AllEvent as i32,
+                        next_page_token: next_page_tok.clone(),
+                        ..Default::default()
+                    })
+                    .await?
+                    .into_inner();
+
+                let history = server_res
+                    .history
+                    .ok_or_else(|| anyhow!("Server returned an empty history!"))?;
+
+                next_page_tok = server_res.next_page_token;
+
+                if history.events.is_empty() {
+                    continue;
+                }
+
+                for e in history.events {
+                    yield e;
+                }
+            }
         }
     }
 }

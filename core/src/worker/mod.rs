@@ -6,7 +6,7 @@ mod slot_provider;
 pub(crate) mod tuner;
 mod workflow;
 
-pub use temporal_sdk_core_api::worker::{WorkerConfig, WorkerConfigBuilder};
+pub use squads_temporal_sdk_core_api::worker::{WorkerConfig, WorkerConfigBuilder};
 pub use tuner::{
     FixedSizeSlotSupplier, RealSysInfo, ResourceBasedSlotsOptions,
     ResourceBasedSlotsOptionsBuilder, ResourceBasedTuner, ResourceSlotOptions, SlotSupplierOptions,
@@ -61,12 +61,12 @@ use std::{
     },
     time::Duration,
 };
-use temporal_client::{ConfiguredClient, TemporalServiceClientWithMetrics, WorkerKey};
-use temporal_sdk_core_api::{
+use squads_temporal_client::{ConfiguredClient, TemporalServiceClientWithMetrics, WorkerKey};
+use squads_temporal_sdk_core_api::{
     errors::{CompleteNexusError, WorkerValidationError},
     worker::PollerBehavior,
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     TaskToken,
     coresdk::{
         ActivityTaskCompletion,
@@ -91,7 +91,7 @@ use {
         protosext::ValidPollWFTQResponse,
     },
     futures_util::stream::BoxStream,
-    temporal_sdk_core_protos::temporal::api::workflowservice::v1::{
+    squads_temporal_sdk_core_protos::temporal::api::workflowservice::v1::{
         PollActivityTaskQueueResponse, PollNexusTaskQueueResponse,
     },
 };
@@ -909,8 +909,8 @@ mod tests {
         worker::client::mocks::{mock_manual_worker_client, mock_worker_client},
     };
     use futures_util::FutureExt;
-    use temporal_sdk_core_api::worker::PollerBehavior;
-    use temporal_sdk_core_protos::temporal::api::workflowservice::v1::PollActivityTaskQueueResponse;
+    use squads_temporal_sdk_core_api::worker::PollerBehavior;
+    use squads_temporal_sdk_core_protos::temporal::api::workflowservice::v1::PollActivityTaskQueueResponse;
 
     #[tokio::test]
     async fn activity_timeouts_maintain_permit() {

@@ -7,7 +7,7 @@ use crate::runtime::Runtime;
 
 use std::str::FromStr;
 use std::time::Duration;
-use temporal_client::{
+use squads_temporal_client::{
     ClientKeepAliveConfig, ClientOptions as CoreClientOptions, ClientOptionsBuilder,
     ClientTlsConfig, CloudService, ConfiguredClient, HealthService, HttpConnectProxyOptions,
     OperatorService, RetryClient, RetryConfig, TemporalServiceClientWithMetrics, TestService,

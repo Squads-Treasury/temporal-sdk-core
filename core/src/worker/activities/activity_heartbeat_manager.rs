@@ -9,7 +9,7 @@ use std::{
     sync::Arc,
     time::{Duration, Instant},
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         ActivityHeartbeat, IntoPayloadsExt,
         activity_task::{ActivityCancelReason, ActivityCancellationDetails, ActivityTask},
@@ -425,7 +425,7 @@ mod test {
 
     use crate::worker::client::mocks::mock_worker_client;
     use std::time::Duration;
-    use temporal_sdk_core_protos::temporal::api::{
+    use squads_temporal_sdk_core_protos::temporal::api::{
         common::v1::Payload, workflowservice::v1::RecordActivityTaskHeartbeatResponse,
     };
     use tokio::time::sleep;

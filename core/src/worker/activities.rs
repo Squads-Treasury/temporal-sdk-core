@@ -35,8 +35,8 @@ use std::{
     },
     time::{Duration, Instant, SystemTime},
 };
-use temporal_sdk_core_api::worker::ActivitySlotKind;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::worker::ActivitySlotKind;
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         ActivityHeartbeat, ActivitySlotInfo,
         activity_result::{self as ar, activity_execution_result as aer},
@@ -728,8 +728,8 @@ mod tests {
         prost_dur,
         worker::client::mocks::mock_worker_client,
     };
-    use temporal_sdk_core_api::worker::PollerBehavior;
-    use temporal_sdk_core_protos::coresdk::activity_result::ActivityExecutionResult;
+    use squads_temporal_sdk_core_api::worker::PollerBehavior;
+    use squads_temporal_sdk_core_protos::coresdk::activity_result::ActivityExecutionResult;
 
     #[tokio::test]
     async fn per_worker_ratelimit() {

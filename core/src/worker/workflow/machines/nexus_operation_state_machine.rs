@@ -6,8 +6,8 @@ use crate::worker::workflow::{
     },
 };
 use itertools::Itertools;
-use rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
-use temporal_sdk_core_protos::{
+use squads_rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         nexus::{NexusOperationCancellationType, NexusOperationResult, nexus_operation_result},
         workflow_activation::{

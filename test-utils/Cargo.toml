@@ -11,7 +11,7 @@ path = "src/histfetch.rs"
 
 [features]
 default = ["ephemeral-server"]
-ephemeral-server = ["temporal-sdk-core/ephemeral-server"]
+ephemeral-server = ["squads-temporal-sdk-core/ephemeral-server"]
 
 [dependencies]
 anyhow = "1.0"
@@ -21,15 +21,15 @@ futures-util = { version = "0.3", default-features = false }
 parking_lot = "0.12"
 prost = { workspace = true }
 rand = "0.9"
-temporal-client = { path = "../client" }
-temporal-sdk = { path = "../sdk" }
-temporal-sdk-core = { path = "../core" }
-temporal-sdk-core-api = { path = "../core-api" }
+squads-temporal-client = { path = "../client" }
+squads-temporal-sdk = { path = "../sdk" }
+squads-temporal-sdk-core = { path = "../core" }
+squads-temporal-sdk-core-api = { path = "../core-api" }
 tokio = "1.1"
 tracing = "0.1"
 url = "2.2"
 
-[dependencies.temporal-sdk-core-protos]
+[dependencies.squads-temporal-sdk-core-protos]
 path = "../sdk-core-protos"
 version = "0.1"
 

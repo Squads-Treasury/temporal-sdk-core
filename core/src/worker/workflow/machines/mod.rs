@@ -37,13 +37,13 @@ use local_activity_state_machine::LocalActivityMachine;
 use modify_workflow_properties_state_machine::ModifyWorkflowPropertiesMachine;
 use nexus_operation_state_machine::NexusOperationMachine;
 use patch_state_machine::PatchMachine;
-use rustfsm::{MachineError, StateMachine};
+use squads_rustfsm::{MachineError, StateMachine};
 use signal_external_state_machine::SignalExternalMachine;
 use std::{
     convert::{TryFrom, TryInto},
     fmt::{Debug, Display},
 };
-use temporal_sdk_core_protos::temporal::api::{
+use squads_temporal_sdk_core_protos::temporal::api::{
     enums::v1::{CommandType, EventType},
     history::v1::HistoryEvent,
 };
@@ -77,7 +77,7 @@ enum Machines {
     NexusOperationMachine,
 }
 
-/// Extends [rustfsm::StateMachine] with some functionality specific to the temporal SDK.
+/// Extends [squads_rustfsm::StateMachine] with some functionality specific to the temporal SDK.
 ///
 /// Formerly known as `EntityStateMachine` in Java.
 #[enum_dispatch::enum_dispatch(Machines)]
@@ -288,7 +288,7 @@ where
 }
 
 struct NewMachineWithCommand {
-    command: temporal_sdk_core_protos::temporal::api::command::v1::command::Attributes,
+    command: squads_temporal_sdk_core_protos::temporal::api::command::v1::command::Attributes,
     machine: Machines,
 }
 

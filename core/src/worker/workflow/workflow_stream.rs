@@ -10,8 +10,8 @@ use crate::{
 };
 use futures_util::{Stream, StreamExt, stream, stream::PollNext};
 use std::{collections::VecDeque, fmt::Debug, future, sync::Arc};
-use temporal_sdk_core_api::errors::PollError;
-use temporal_sdk_core_protos::coresdk::workflow_activation::remove_from_cache::EvictionReason;
+use squads_temporal_sdk_core_api::errors::PollError;
+use squads_temporal_sdk_core_protos::coresdk::workflow_activation::remove_from_cache::EvictionReason;
 use tokio_util::sync::CancellationToken;
 use tracing::{Level, Span};
 

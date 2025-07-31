@@ -21,14 +21,14 @@ use std::{
     },
     time::Duration,
 };
-use temporal_client::WorkflowOptions;
+use squads_temporal_client::WorkflowOptions;
 use temporal_sdk::{ActivityOptions, WfContext};
-use temporal_sdk_core_api::{
+use squads_temporal_sdk_core_api::{
     Worker as WorkerTrait,
     errors::{CompleteActivityError, PollError},
     worker::PollerBehavior,
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     DEFAULT_ACTIVITY_TYPE, DEFAULT_WORKFLOW_TYPE, TestHistoryBuilder,
     coresdk::{
         ActivityTaskCompletion,

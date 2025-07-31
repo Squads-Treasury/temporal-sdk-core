@@ -51,8 +51,8 @@ use std::{
     sync::Arc,
     time::{Duration, Instant, SystemTime},
 };
-use temporal_sdk_core_api::worker::{WorkerConfig, WorkerDeploymentVersion};
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::worker::{WorkerConfig, WorkerDeploymentVersion};
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         common::{NamespacedWorkflowExecution, VersioningIntent},
         workflow_activation,

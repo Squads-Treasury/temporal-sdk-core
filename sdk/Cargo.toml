@@ -1,5 +1,5 @@
 [package]
-name = "temporal-sdk"
+name = "squads-temporal-sdk"
 version = "0.1.0-alpha.1"
 edition = "2024"
 authors = ["Spencer Judge <spencer@temporal.io>"]
@@ -24,20 +24,20 @@ tokio-util = { version = "0.7" }
 tokio-stream = "0.1"
 tracing = "0.1"
 
-[dependencies.temporal-sdk-core]
+[dependencies.squads-temporal-sdk-core]
 path = "../core"
 version = "0.1"
 default-features = false
 
-[dependencies.temporal-sdk-core-protos]
+[dependencies.squads-temporal-sdk-core-protos]
 path = "../sdk-core-protos"
 version = "0.1"
 
-[dependencies.temporal-sdk-core-api]
+[dependencies.squads-temporal-sdk-core-api]
 path = "../core-api"
 version = "0.1"
 
-[dependencies.temporal-client]
+[dependencies.squads-temporal-client]
 path = "../client"
 version = "0.1"
 

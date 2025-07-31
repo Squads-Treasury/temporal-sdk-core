@@ -23,8 +23,8 @@ use std::panic::{AssertUnwindSafe, UnwindSafe};
 use std::ptr::NonNull;
 use std::sync::{Arc, Condvar, Mutex, MutexGuard, PoisonError, Weak};
 use std::time::Duration;
-use temporal_client::ClientOptions;
-use temporal_sdk_core::ephemeral_server::{
+use squads_temporal_client::ClientOptions;
+use squads_temporal_sdk_core::ephemeral_server::{
     EphemeralExe, EphemeralExeVersion, TemporalDevServerConfig,
 };
 

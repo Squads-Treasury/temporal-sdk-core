@@ -28,8 +28,8 @@ use std::{
     sync::{Arc, mpsc::Sender},
     time::{Duration, Instant},
 };
-use temporal_sdk_core_api::{errors::WorkflowErrorType, worker::WorkerConfig};
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::{errors::WorkflowErrorType, worker::WorkerConfig};
+use squads_temporal_sdk_core_protos::{
     TaskToken,
     coresdk::{
         workflow_activation::{
@@ -1606,7 +1606,7 @@ mod tests {
     }
 
     mod command_utils {
-        use temporal_sdk_core_protos::coresdk::workflow_commands::{
+        use squads_temporal_sdk_core_protos::coresdk::workflow_commands::{
             CancelWorkflowExecution, CompleteWorkflowExecution, QueryResult, UpdateResponse,
         };
 

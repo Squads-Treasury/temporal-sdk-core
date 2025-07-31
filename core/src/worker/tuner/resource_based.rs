@@ -8,7 +8,7 @@ use std::{
     },
     time::{Duration, Instant},
 };
-use temporal_sdk_core_api::{
+use squads_temporal_sdk_core_api::{
     telemetry::metrics::{CoreMeter, GaugeF64, MetricAttributes, TemporalMeter},
     worker::{
         ActivitySlotKind, LocalActivitySlotKind, NexusSlotKind, SlotInfo, SlotInfoTrait, SlotKind,
@@ -552,7 +552,7 @@ mod tests {
         Arc,
         atomic::{AtomicU64, Ordering},
     };
-    use temporal_sdk_core_api::worker::WorkflowSlotKind;
+    use squads_temporal_sdk_core_api::worker::WorkflowSlotKind;
 
     struct FakeMIS {
         used: Arc<AtomicU64>,

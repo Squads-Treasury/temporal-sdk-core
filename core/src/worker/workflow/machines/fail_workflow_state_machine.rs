@@ -3,9 +3,9 @@ use super::{
     workflow_machines::MachineResponse,
 };
 use crate::worker::workflow::machines::HistEventData;
-use rustfsm::{StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{StateMachine, TransitionResult, fsm};
 use std::convert::TryFrom;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::workflow_commands::FailWorkflowExecution,
     temporal::api::{
         command::v1::command,

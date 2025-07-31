@@ -1,5 +1,5 @@
 [package]
-name = "temporal-sdk-core-api"
+name = "squads-temporal-sdk-core-api"
 version = "0.1.0"
 edition = "2024"
 authors = ["Spencer Judge <spencer@temporal.io>"]
@@ -32,7 +32,7 @@ tracing = "0.1"
 tracing-core = "0.1"
 url = "2.3"
 
-[dependencies.temporal-sdk-core-protos]
+[dependencies.squads-temporal-sdk-core-protos]
 path = "../sdk-core-protos"
 version = "0.1"
 

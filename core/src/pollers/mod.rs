@@ -3,7 +3,7 @@ mod poll_buffer;
 pub(crate) use poll_buffer::{
     ActivityTaskOptions, LongPollBuffer, WorkflowTaskOptions, WorkflowTaskPoller,
 };
-pub use temporal_client::{
+pub use squads_temporal_client::{
     Client, ClientOptions, ClientOptionsBuilder, ClientTlsConfig, RetryClient, RetryConfig,
     TlsConfig, WorkflowClientTrait,
 };
@@ -15,8 +15,8 @@ use crate::{
 use anyhow::{anyhow, bail};
 use futures_util::{Stream, stream};
 use std::{fmt::Debug, marker::PhantomData};
-use temporal_sdk_core_api::worker::{ActivitySlotKind, NexusSlotKind, SlotKind, WorkflowSlotKind};
-use temporal_sdk_core_protos::temporal::api::workflowservice::v1::{
+use squads_temporal_sdk_core_api::worker::{ActivitySlotKind, NexusSlotKind, SlotKind, WorkflowSlotKind};
+use squads_temporal_sdk_core_protos::temporal::api::workflowservice::v1::{
     PollActivityTaskQueueResponse, PollNexusTaskQueueResponse, PollWorkflowTaskQueueResponse,
 };
 use tokio::select;

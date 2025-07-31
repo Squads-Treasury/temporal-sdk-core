@@ -6,7 +6,7 @@ use std::{
     collections::{BTreeSet, HashSet},
     iter,
 };
-use temporal_sdk_core_protos::temporal::api::{
+use squads_temporal_sdk_core_protos::temporal::api::{
     history::v1::WorkflowTaskCompletedEventAttributes, sdk::v1::WorkflowTaskCompletedMetadata,
     workflowservice::v1::get_system_info_response,
 };
@@ -223,7 +223,7 @@ impl CoreInternalFlags {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use temporal_sdk_core_protos::temporal::api::workflowservice::v1::get_system_info_response::Capabilities;
+    use squads_temporal_sdk_core_protos::temporal::api::workflowservice::v1::get_system_info_response::Capabilities;
 
     impl Default for InternalFlags {
         fn default() -> Self {

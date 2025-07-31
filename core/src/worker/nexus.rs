@@ -20,11 +20,11 @@ use std::{
     },
     time::{Duration, Instant, SystemTime},
 };
-use temporal_sdk_core_api::{
+use squads_temporal_sdk_core_api::{
     errors::{CompleteNexusError, PollError},
     worker::NexusSlotKind,
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     TaskToken,
     coresdk::{
         NexusSlotInfo,

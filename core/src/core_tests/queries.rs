@@ -13,8 +13,8 @@ use std::{
     collections::{HashMap, VecDeque},
     time::Duration,
 };
-use temporal_sdk_core_api::{Worker as WorkerTrait, worker::WorkerVersioningStrategy};
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::{Worker as WorkerTrait, worker::WorkerVersioningStrategy};
+use squads_temporal_sdk_core_protos::{
     TestHistoryBuilder,
     coresdk::{
         workflow_activation::{

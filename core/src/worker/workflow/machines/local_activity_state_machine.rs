@@ -14,12 +14,12 @@ use crate::{
     },
 };
 use itertools::Itertools;
-use rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
 use std::{
     convert::TryFrom,
     time::{Duration, SystemTime},
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     constants::LOCAL_ACTIVITY_MARKER_NAME,
     coresdk::{
         activity_result::{
@@ -878,7 +878,7 @@ mod tests {
         ActContext, ActivityError, CancellableFuture, LocalActivityOptions, WfContext,
         WorkflowResult,
     };
-    use temporal_sdk_core_protos::{
+    use squads_temporal_sdk_core_protos::{
         DEFAULT_ACTIVITY_TYPE, DEFAULT_WORKFLOW_TYPE,
         coresdk::{
             AsJsonPayloadExt,

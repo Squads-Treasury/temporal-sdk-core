@@ -85,7 +85,7 @@ mod machine_coverage_report {
         upsert_search_attributes_state_machine::UpsertSearchAttributesMachine,
         workflow_task_state_machine::WorkflowTaskMachine,
     };
-    use rustfsm::StateMachine;
+    use squads_rustfsm::StateMachine;
     use std::{fs::File, io::Write};
 
     // This "test" needs to exist so that we have a way to join the spawned thread. Otherwise

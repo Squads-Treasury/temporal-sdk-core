@@ -25,17 +25,17 @@ tonic = { workspace = true }
 tracing = "0.1"
 url = "2.2"
 
-[dependencies.temporal-client]
+[dependencies.squads-temporal-client]
 path = "../client"
 
-[dependencies.temporal-sdk-core]
+[dependencies.squads-temporal-sdk-core]
 path = "../core"
 features = ["ephemeral-server"]
 
-[dependencies.temporal-sdk-core-api]
+[dependencies.squads-temporal-sdk-core-api]
 path = "../core-api"
 
-[dependencies.temporal-sdk-core-protos]
+[dependencies.squads-temporal-sdk-core-protos]
 path = "../sdk-core-protos"
 
 [dev-dependencies]

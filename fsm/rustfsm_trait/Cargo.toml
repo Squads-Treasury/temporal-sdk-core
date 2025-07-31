@@ -1,6 +1,6 @@
 [package]
-name = "rustfsm_trait"
-version = "0.1.0"
+name = "squads-rustfsm-trait"
+version = "0.1.1"
 authors = ["Spencer Judge <spencer@temporal.io>"]
 edition = "2024"
 license-file = "LICENSE.txt"

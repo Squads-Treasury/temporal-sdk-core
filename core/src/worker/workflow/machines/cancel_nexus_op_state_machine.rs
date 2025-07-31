@@ -3,9 +3,9 @@ use super::{
     WFMachinesAdapter, WFMachinesError,
 };
 use crate::worker::workflow::machines::HistEventData;
-use rustfsm::{fsm, StateMachine, TransitionResult};
+use squads_rustfsm::{fsm, StateMachine, TransitionResult};
 use std::convert::TryFrom;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::workflow_activation::ResolveCancelNexusOperation,
     temporal::api::{
         command::v1::{command, RequestCancelNexusOperationCommandAttributes},

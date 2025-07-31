@@ -3,9 +3,9 @@ use super::{
     workflow_machines::MachineResponse,
 };
 use crate::worker::workflow::machines::HistEventData;
-use rustfsm::{StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{StateMachine, TransitionResult, fsm};
 use std::convert::TryFrom;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::workflow_commands::CancelWorkflowExecution,
     temporal::api::enums::v1::{CommandType, EventType},
 };
@@ -103,7 +103,7 @@ mod tests {
     use crate::test_help::{MockPollCfg, build_fake_sdk, canned_histories};
     use std::time::Duration;
     use temporal_sdk::{WfContext, WfExitValue, WorkflowResult};
-    use temporal_sdk_core_protos::{
+    use squads_temporal_sdk_core_protos::{
         DEFAULT_WORKFLOW_TYPE,
         coresdk::workflow_activation::{WorkflowActivationJob, workflow_activation_job},
     };

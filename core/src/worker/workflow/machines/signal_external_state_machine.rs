@@ -3,9 +3,9 @@ use super::{
     workflow_machines::MachineResponse,
 };
 use crate::worker::workflow::machines::HistEventData;
-use rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
 use std::convert::TryFrom;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         IntoPayloadsExt,
         common::NamespacedWorkflowExecution,
@@ -303,7 +303,7 @@ mod tests {
     };
     use std::mem::discriminant;
     use temporal_sdk::{CancellableFuture, SignalWorkflowOptions, WfContext, WorkflowResult};
-    use temporal_sdk_core_protos::{
+    use squads_temporal_sdk_core_protos::{
         DEFAULT_WORKFLOW_TYPE,
         coresdk::workflow_activation::{WorkflowActivationJob, workflow_activation_job},
         temporal::api::command::v1::Command,

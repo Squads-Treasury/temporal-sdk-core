@@ -28,9 +28,9 @@ use std::{
     },
     time::Duration,
 };
-use temporal_client::WorkflowOptions;
+use squads_temporal_client::WorkflowOptions;
 use temporal_sdk::{ActivityOptions, CancellableFuture, TimerOptions, WfContext};
-use temporal_sdk_core_api::{
+use squads_temporal_sdk_core_api::{
     Worker as WorkerTrait,
     errors::PollError,
     worker::{
@@ -38,7 +38,7 @@ use temporal_sdk_core_api::{
         SlotSupplier, SlotSupplierPermit, WorkerVersioningStrategy, WorkflowSlotKind,
     },
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     DEFAULT_ACTIVITY_TYPE, DEFAULT_WORKFLOW_TYPE,
     coresdk::{
         activity_result::{self as ar, ActivityResolution, activity_resolution},

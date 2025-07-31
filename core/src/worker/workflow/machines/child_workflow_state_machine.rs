@@ -7,12 +7,12 @@ use crate::{
     worker::workflow::{InternalFlagsRef, machines::HistEventData},
 };
 use itertools::Itertools;
-use rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
 use std::{
     convert::{TryFrom, TryInto},
     string::ToString,
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         child_workflow::{
             self as wfr, ChildWorkflowCancellationType, ChildWorkflowResult,
@@ -788,7 +788,7 @@ mod test {
     use rstest::{fixture, rstest};
     use std::{cell::RefCell, mem::discriminant, rc::Rc};
     use temporal_sdk::{CancellableFuture, ChildWorkflowOptions, WfContext, WorkflowResult};
-    use temporal_sdk_core_protos::{
+    use squads_temporal_sdk_core_protos::{
         DEFAULT_WORKFLOW_TYPE,
         coresdk::{
             child_workflow::child_workflow_result,

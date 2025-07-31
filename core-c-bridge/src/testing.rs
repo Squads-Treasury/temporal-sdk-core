@@ -5,7 +5,7 @@ use crate::ByteArrayRef;
 use crate::UserDataHandle;
 use crate::runtime::Runtime;
 
-use temporal_sdk_core::ephemeral_server;
+use squads_temporal_sdk_core::ephemeral_server;
 
 pub struct EphemeralServer {
     runtime: Runtime,

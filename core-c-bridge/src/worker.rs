@@ -6,22 +6,22 @@ use crate::client::Client;
 use crate::runtime::Runtime;
 use anyhow::{Context, bail};
 use prost::Message;
-use temporal_sdk_core::WorkerConfigBuilder;
-use temporal_sdk_core::replay::HistoryForReplay;
-use temporal_sdk_core::replay::ReplayWorkerInput;
-use temporal_sdk_core_api::Worker as CoreWorker;
-use temporal_sdk_core_api::errors::PollError;
-use temporal_sdk_core_api::errors::WorkflowErrorType;
-use temporal_sdk_core_api::worker::SlotInfoTrait;
-use temporal_sdk_core_api::worker::SlotKind;
-use temporal_sdk_core_api::worker::SlotMarkUsedContext;
-use temporal_sdk_core_api::worker::SlotReleaseContext;
-use temporal_sdk_core_api::worker::SlotReservationContext;
-use temporal_sdk_core_api::worker::SlotSupplierPermit;
-use temporal_sdk_core_protos::coresdk::ActivityHeartbeat;
-use temporal_sdk_core_protos::coresdk::ActivityTaskCompletion;
-use temporal_sdk_core_protos::coresdk::workflow_completion::WorkflowActivationCompletion;
-use temporal_sdk_core_protos::temporal::api::history::v1::History;
+use squads_temporal_sdk_core::WorkerConfigBuilder;
+use squads_temporal_sdk_core::replay::HistoryForReplay;
+use squads_temporal_sdk_core::replay::ReplayWorkerInput;
+use squads_temporal_sdk_core_api::Worker as CoreWorker;
+use squads_temporal_sdk_core_api::errors::PollError;
+use squads_temporal_sdk_core_api::errors::WorkflowErrorType;
+use squads_temporal_sdk_core_api::worker::SlotInfoTrait;
+use squads_temporal_sdk_core_api::worker::SlotKind;
+use squads_temporal_sdk_core_api::worker::SlotMarkUsedContext;
+use squads_temporal_sdk_core_api::worker::SlotReleaseContext;
+use squads_temporal_sdk_core_api::worker::SlotReservationContext;
+use squads_temporal_sdk_core_api::worker::SlotSupplierPermit;
+use squads_temporal_sdk_core_protos::coresdk::ActivityHeartbeat;
+use squads_temporal_sdk_core_protos::coresdk::ActivityTaskCompletion;
+use squads_temporal_sdk_core_protos::coresdk::workflow_completion::WorkflowActivationCompletion;
+use squads_temporal_sdk_core_protos::temporal::api::history::v1::History;
 use tokio::sync::mpsc::{Sender, channel};
 use tokio::sync::oneshot;
 use tokio_stream::wrappers::ReceiverStream;
@@ -72,7 +72,7 @@ pub struct PollerBehavior {
     pub autoscaling: *const PollerBehaviorAutoscaling,
 }
 
-impl TryFrom<&PollerBehavior> for temporal_sdk_core_api::worker::PollerBehavior {
+impl TryFrom<&PollerBehavior> for squads_temporal_sdk_core_api::worker::PollerBehavior {
     type Error = anyhow::Error;
     fn try_from(value: &PollerBehavior) -> Result<Self, Self::Error> {
         if !value.simple_maximum.is_null() && !value.autoscaling.is_null() {
@@ -80,10 +80,10 @@ impl TryFrom<&PollerBehavior> for temporal_sdk_core_api::worker::PollerBehavior 
         }
         if let Some(value) = unsafe { value.simple_maximum.as_ref() } {
             return Ok(
-                temporal_sdk_core_api::worker::PollerBehavior::SimpleMaximum(value.simple_maximum),
+                squads_temporal_sdk_core_api::worker::PollerBehavior::SimpleMaximum(value.simple_maximum),
             );
         } else if let Some(value) = unsafe { value.autoscaling.as_ref() } {
-            return Ok(temporal_sdk_core_api::worker::PollerBehavior::Autoscaling {
+            return Ok(squads_temporal_sdk_core_api::worker::PollerBehavior::Autoscaling {
                 minimum: value.minimum,
                 maximum: value.maximum,
                 initial: value.initial,
@@ -188,7 +188,7 @@ pub struct CustomSlotSupplierCallbacks {
 impl CustomSlotSupplierCallbacksImpl {
     fn into_ss<SK: SlotKind + Send + Sync + 'static>(
         self,
-    ) -> Arc<dyn temporal_sdk_core_api::worker::SlotSupplier<SlotKind = SK> + Send + Sync + 'static>
+    ) -> Arc<dyn squads_temporal_sdk_core_api::worker::SlotSupplier<SlotKind = SK> + Send + Sync + 'static>
     {
         Arc::new(CustomSlotSupplier {
             inner: self,
@@ -272,7 +272,7 @@ impl Drop for CancelReserveGuard {
 unsafe impl Send for CancelReserveGuard {}
 
 #[async_trait::async_trait]
-impl<SK: SlotKind + Send + Sync> temporal_sdk_core_api::worker::SlotSupplier
+impl<SK: SlotKind + Send + Sync> squads_temporal_sdk_core_api::worker::SlotSupplier
     for CustomSlotSupplier<SK>
 {
     type SlotKind = SK;
@@ -335,16 +335,16 @@ impl<SK: SlotKind + Send + Sync> CustomSlotSupplier<SK> {
     fn convert_reserve_ctx(ctx: &dyn SlotReservationContext) -> SlotReserveCtx {
         SlotReserveCtx {
             slot_type: match SK::kind() {
-                temporal_sdk_core_api::worker::SlotKindType::Workflow => {
+                squads_temporal_sdk_core_api::worker::SlotKindType::Workflow => {
                     SlotKindType::WorkflowSlotKindType
                 }
-                temporal_sdk_core_api::worker::SlotKindType::Activity => {
+                squads_temporal_sdk_core_api::worker::SlotKindType::Activity => {
                     SlotKindType::ActivitySlotKindType
                 }
-                temporal_sdk_core_api::worker::SlotKindType::LocalActivity => {
+                squads_temporal_sdk_core_api::worker::SlotKindType::LocalActivity => {
                     SlotKindType::LocalActivitySlotKindType
                 }
-                temporal_sdk_core_api::worker::SlotKindType::Nexus => {
+                squads_temporal_sdk_core_api::worker::SlotKindType::Nexus => {
                     SlotKindType::NexusSlotKindType
                 }
             },
@@ -360,21 +360,21 @@ impl<SK: SlotKind + Send + Sync> CustomSlotSupplier<SK> {
         }
     }
 
-    fn convert_slot_info(info: temporal_sdk_core_api::worker::SlotInfo) -> SlotInfo {
+    fn convert_slot_info(info: squads_temporal_sdk_core_api::worker::SlotInfo) -> SlotInfo {
         match info {
-            temporal_sdk_core_api::worker::SlotInfo::Workflow(w) => SlotInfo::WorkflowSlotInfo {
+            squads_temporal_sdk_core_api::worker::SlotInfo::Workflow(w) => SlotInfo::WorkflowSlotInfo {
                 workflow_type: w.workflow_type.as_str().into(),
                 is_sticky: w.is_sticky,
             },
-            temporal_sdk_core_api::worker::SlotInfo::Activity(a) => SlotInfo::ActivitySlotInfo {
+            squads_temporal_sdk_core_api::worker::SlotInfo::Activity(a) => SlotInfo::ActivitySlotInfo {
                 activity_type: a.activity_type.as_str().into(),
             },
-            temporal_sdk_core_api::worker::SlotInfo::LocalActivity(a) => {
+            squads_temporal_sdk_core_api::worker::SlotInfo::LocalActivity(a) => {
                 SlotInfo::LocalActivitySlotInfo {
                     activity_type: a.activity_type.as_str().into(),
                 }
             }
-            temporal_sdk_core_api::worker::SlotInfo::Nexus(n) => SlotInfo::NexusSlotInfo {
+            squads_temporal_sdk_core_api::worker::SlotInfo::Nexus(n) => SlotInfo::NexusSlotInfo {
                 operation: n.operation.as_str().into(),
                 service: n.operation.as_str().into(),
             },
@@ -391,7 +391,7 @@ pub struct ResourceBasedTunerOptions {
 
 #[derive(Clone)]
 pub struct Worker {
-    worker: Option<Arc<temporal_sdk_core::Worker>>,
+    worker: Option<Arc<squads_temporal_sdk_core::Worker>>,
     runtime: Runtime,
 }
 
@@ -421,7 +421,7 @@ pub struct WorkerReplayPushResult {
 macro_rules! enter_sync {
     ($runtime:expr) => {
         if let Some(subscriber) = $runtime.core.telemetry().trace_subscriber() {
-            temporal_sdk_core::telemetry::set_trace_subscriber_for_current_thread(subscriber);
+            squads_temporal_sdk_core::telemetry::set_trace_subscriber_for_current_thread(subscriber);
         }
         let _guard = $runtime.core.tokio_handle().enter();
     };
@@ -445,7 +445,7 @@ pub extern "C" fn temporal_core_worker_new(
                 .into_raw()
                 .cast_const(),
         ),
-        Ok(config) => match temporal_sdk_core::init_worker(
+        Ok(config) => match squads_temporal_sdk_core::init_worker(
             &client.runtime.core,
             config,
             client.core.clone().into_inner(),
@@ -782,7 +782,7 @@ pub extern "C" fn temporal_core_worker_replayer_new(
         ),
         Ok(config) => {
             let (tx, rx) = channel(1);
-            match temporal_sdk_core::init_replay_worker(ReplayWorkerInput::new(
+            match squads_temporal_sdk_core::init_replay_worker(ReplayWorkerInput::new(
                 config,
                 ReceiverStream::new(rx),
             )) {
@@ -880,18 +880,18 @@ pub extern "C" fn temporal_core_set_reserve_cancel_target(
     }
 }
 
-impl TryFrom<&WorkerOptions> for temporal_sdk_core::WorkerConfig {
+impl TryFrom<&WorkerOptions> for squads_temporal_sdk_core::WorkerConfig {
     type Error = anyhow::Error;
 
     fn try_from(opt: &WorkerOptions) -> anyhow::Result<Self> {
-        let converted_tuner: temporal_sdk_core::TunerHolder = (&opt.tuner).try_into()?;
+        let converted_tuner: squads_temporal_sdk_core::TunerHolder = (&opt.tuner).try_into()?;
         WorkerConfigBuilder::default()
             .namespace(opt.namespace.to_str())
             .task_queue(opt.task_queue.to_str())
             .versioning_strategy({
                 match &opt.versioning_strategy {
                     WorkerVersioningStrategy::None(n) => {
-                        temporal_sdk_core_api::worker::WorkerVersioningStrategy::None {
+                        squads_temporal_sdk_core_api::worker::WorkerVersioningStrategy::None {
                             build_id: n.build_id.to_string(),
                         }
                     }
@@ -901,9 +901,9 @@ impl TryFrom<&WorkerOptions> for temporal_sdk_core::WorkerConfig {
                         } else {
                             bail!("Invalid default versioning behavior {}", dopts.default_versioning_behavior)
                         };
-                        temporal_sdk_core_api::worker::WorkerVersioningStrategy::WorkerDeploymentBased(
-                            temporal_sdk_core_api::worker::WorkerDeploymentOptions {
-                                version: temporal_sdk_core_api::worker::WorkerDeploymentVersion {
+                        squads_temporal_sdk_core_api::worker::WorkerVersioningStrategy::WorkerDeploymentBased(
+                            squads_temporal_sdk_core_api::worker::WorkerDeploymentOptions {
+                                version: squads_temporal_sdk_core_api::worker::WorkerDeploymentVersion {
                                     deployment_name: dopts.version.deployment_name.to_string(),
                                     build_id: dopts.version.build_id.to_string(),
                                 },
@@ -913,7 +913,7 @@ impl TryFrom<&WorkerOptions> for temporal_sdk_core::WorkerConfig {
                         )
                     }
                     WorkerVersioningStrategy::LegacyBuildIdBased(l) => {
-                        temporal_sdk_core_api::worker::WorkerVersioningStrategy::LegacyBuildIdBased {
+                        squads_temporal_sdk_core_api::worker::WorkerVersioningStrategy::LegacyBuildIdBased {
                             build_id: l.build_id.to_string(),
                         }
                     }
@@ -948,9 +948,9 @@ impl TryFrom<&WorkerOptions> for temporal_sdk_core::WorkerConfig {
             // auto-cancel-activity behavior or shutdown will not occur, so we
             // always set it even if 0.
             .graceful_shutdown_period(Duration::from_millis(opt.graceful_shutdown_period_millis))
-            .workflow_task_poller_behavior(temporal_sdk_core_api::worker::PollerBehavior::try_from(&opt.workflow_task_poller_behavior)?)
+            .workflow_task_poller_behavior(squads_temporal_sdk_core_api::worker::PollerBehavior::try_from(&opt.workflow_task_poller_behavior)?)
             .nonsticky_to_sticky_poll_ratio(opt.nonsticky_to_sticky_poll_ratio)
-            .activity_task_poller_behavior(temporal_sdk_core_api::worker::PollerBehavior::try_from(&opt.activity_task_poller_behavior)?)
+            .activity_task_poller_behavior(squads_temporal_sdk_core_api::worker::PollerBehavior::try_from(&opt.activity_task_poller_behavior)?)
             .workflow_failure_errors(if opt.nondeterminism_as_workflow_fail {
                 HashSet::from([WorkflowErrorType::Nondeterminism])
             } else {
@@ -973,7 +973,7 @@ impl TryFrom<&WorkerOptions> for temporal_sdk_core::WorkerConfig {
     }
 }
 
-impl TryFrom<&TunerHolder> for temporal_sdk_core::TunerHolder {
+impl TryFrom<&TunerHolder> for squads_temporal_sdk_core::TunerHolder {
     type Error = anyhow::Error;
 
     fn try_from(holder: &TunerHolder) -> anyhow::Result<Self> {
@@ -1012,10 +1012,10 @@ impl TryFrom<&TunerHolder> for temporal_sdk_core::TunerHolder {
             bail!("All resource-based slot suppliers must have the same ResourceBasedTunerOptions",);
         }
 
-        let mut options = temporal_sdk_core::TunerHolderOptionsBuilder::default();
+        let mut options = squads_temporal_sdk_core::TunerHolderOptionsBuilder::default();
         if let Some(first) = first {
             options.resource_based_options(
-                temporal_sdk_core::ResourceBasedSlotsOptionsBuilder::default()
+                squads_temporal_sdk_core::ResourceBasedSlotsOptionsBuilder::default()
                     .target_mem_usage(first.target_memory_usage)
                     .target_cpu_usage(first.target_cpu_usage)
                     .build()
@@ -1034,20 +1034,20 @@ impl TryFrom<&TunerHolder> for temporal_sdk_core::TunerHolder {
 }
 
 impl<SK: SlotKind + Send + Sync + 'static> TryFrom<SlotSupplier>
-    for temporal_sdk_core::SlotSupplierOptions<SK>
+    for squads_temporal_sdk_core::SlotSupplierOptions<SK>
 {
     type Error = anyhow::Error;
 
     fn try_from(
         supplier: SlotSupplier,
-    ) -> anyhow::Result<temporal_sdk_core::SlotSupplierOptions<SK>> {
+    ) -> anyhow::Result<squads_temporal_sdk_core::SlotSupplierOptions<SK>> {
         Ok(match supplier {
-            SlotSupplier::FixedSize(fs) => temporal_sdk_core::SlotSupplierOptions::FixedSize {
+            SlotSupplier::FixedSize(fs) => squads_temporal_sdk_core::SlotSupplierOptions::FixedSize {
                 slots: fs.num_slots,
             },
             SlotSupplier::ResourceBased(ss) => {
-                temporal_sdk_core::SlotSupplierOptions::ResourceBased(
-                    temporal_sdk_core::ResourceSlotOptions::new(
+                squads_temporal_sdk_core::SlotSupplierOptions::ResourceBased(
+                    squads_temporal_sdk_core::ResourceSlotOptions::new(
                         ss.minimum_slots,
                         ss.maximum_slots,
                         Duration::from_millis(ss.ramp_throttle_ms),
@@ -1055,7 +1055,7 @@ impl<SK: SlotKind + Send + Sync + 'static> TryFrom<SlotSupplier>
                 )
             }
             SlotSupplier::Custom(cs) => {
-                temporal_sdk_core::SlotSupplierOptions::Custom(cs.into_ss())
+                squads_temporal_sdk_core::SlotSupplierOptions::Custom(cs.into_ss())
             }
         })
     }

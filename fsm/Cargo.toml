@@ -1,6 +1,6 @@
 [package]
-name = "rustfsm"
-version = "0.1.0"
+name = "squads-rustfsm"
+version = "0.1.1"
 authors = ["Spencer Judge <spencer@temporal.io>"]
 edition = "2024"
 license-file = "LICENSE.txt"
@@ -11,8 +11,8 @@ keywords = ["state-machine", "fsm"]
 categories = ["data-structures"]
 
 [dependencies]
-rustfsm_procmacro = { version = "0.1", path = "rustfsm_procmacro" }
-rustfsm_trait = { version = "0.1", path = "rustfsm_trait" }
+squads-rustfsm-procmacro = { version = "0.1.1", path = "rustfsm_procmacro" }
+squads-rustfsm-trait = { version = "0.1.1", path = "rustfsm_trait" }
 
 [package.metadata.workspaces]
 independent = true

@@ -17,8 +17,8 @@ use std::{
     task::{Context, Poll},
     time::{Duration, Instant, SystemTime},
 };
-use temporal_sdk_core_api::worker::LocalActivitySlotKind;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::worker::LocalActivitySlotKind;
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         LocalActivitySlotInfo,
         activity_result::{Cancellation, Failure as ActFail, Success},
@@ -978,7 +978,7 @@ mod tests {
     use super::*;
     use crate::{prost_dur, protosext::LACloseTimeouts};
     use futures_util::FutureExt;
-    use temporal_sdk_core_protos::temporal::api::{
+    use squads_temporal_sdk_core_protos::temporal::api::{
         common::v1::RetryPolicy,
         failure::v1::{ApplicationFailureInfo, Failure, failure::FailureInfo},
     };

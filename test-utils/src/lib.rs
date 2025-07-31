@@ -8,7 +8,7 @@ pub mod canned_histories;
 pub mod interceptors;
 pub mod workflows;
 
-pub use temporal_sdk_core::replay::HistoryForReplay;
+pub use squads_temporal_sdk_core::replay::HistoryForReplay;
 
 use crate::stream::{Stream, TryStreamExt};
 use anyhow::{Context, Error, bail};
@@ -27,12 +27,12 @@ use std::{
     sync::Arc,
     time::{Duration, Instant},
 };
-use temporal_client::{
+use squads_temporal_client::{
     Client, ClientTlsConfig, GetWorkflowResultOpts, NamespacedClient, RetryClient, TlsConfig,
     WfClientExt, WorkflowClientTrait, WorkflowExecutionInfo, WorkflowExecutionResult,
     WorkflowHandle, WorkflowOptions,
 };
-use temporal_sdk::{
+use squads_temporal_sdk::{
     IntoActivityFunc, Worker, WorkflowFunction,
     interceptors::{
         FailOnNondeterminismInterceptor, InterceptorWithNext, ReturnWorkflowExitValueInterceptor,
@@ -40,14 +40,14 @@ use temporal_sdk::{
     },
 };
 #[cfg(feature = "ephemeral-server")]
-use temporal_sdk_core::ephemeral_server::{EphemeralExe, EphemeralExeVersion};
-use temporal_sdk_core::{
+use squads_temporal_sdk_core::ephemeral_server::{EphemeralExe, EphemeralExeVersion};
+use squads_temporal_sdk_core::{
     ClientOptions, ClientOptionsBuilder, CoreRuntime, WorkerConfigBuilder, init_replay_worker,
     init_worker,
     replay::ReplayWorkerInput,
     telemetry::{build_otlp_metric_exporter, start_prometheus_metric_exporter},
 };
-use temporal_sdk_core_api::{
+use squads_temporal_sdk_core_api::{
     Worker as CoreWorker,
     errors::PollError,
     telemetry::{
@@ -57,7 +57,7 @@ use temporal_sdk_core_api::{
     },
     worker::WorkerVersioningStrategy,
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     DEFAULT_ACTIVITY_TYPE,
     coresdk::{
         FromPayloadsExt,
@@ -714,7 +714,7 @@ pub fn get_integ_tls_config() -> Option<TlsConfig> {
 pub fn get_integ_telem_options() -> TelemetryOptions {
     let mut ob = TelemetryOptionsBuilder::default();
     let filter_string =
-        env::var("RUST_LOG").unwrap_or_else(|_| "INFO,temporal_sdk_core=INFO".to_string());
+        env::var("RUST_LOG").unwrap_or_else(|_| "INFO,squads_temporal_sdk_core=INFO".to_string());
     if let Some(url) = env::var(OTEL_URL_ENV_VAR)
         .ok()
         .map(|x| x.parse::<Url>().unwrap())

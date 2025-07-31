@@ -11,8 +11,8 @@ use crate::{
 };
 use futures_util::{FutureExt, TryFutureExt, future::BoxFuture};
 use std::sync::Arc;
-use temporal_sdk_core_api::telemetry::metrics::MetricKeyValue;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::telemetry::metrics::MetricKeyValue;
+use squads_temporal_sdk_core_protos::{
     grpc::health::v1::{health_client::HealthClient, *},
     temporal::api::{
         cloud::cloudservice::{v1 as cloudreq, v1::cloud_service_client::CloudServiceClient},
@@ -1468,7 +1468,7 @@ mod tests {
     use super::*;
     use crate::{ClientOptionsBuilder, RetryClient};
     use std::collections::HashSet;
-    use temporal_sdk_core_protos::temporal::api::{
+    use squads_temporal_sdk_core_protos::temporal::api::{
         operatorservice::v1::DeleteNamespaceRequest, workflowservice::v1::ListNamespacesRequest,
     };
 

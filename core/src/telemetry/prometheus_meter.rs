@@ -12,7 +12,7 @@ use std::{
     sync::Arc,
     time::Duration,
 };
-use temporal_sdk_core_api::telemetry::metrics::{
+use squads_temporal_sdk_core_api::telemetry::metrics::{
     CoreMeter, Counter, CounterBase, Gauge, GaugeBase, GaugeF64, GaugeF64Base, Histogram,
     HistogramBase, HistogramDuration, HistogramDurationBase, HistogramF64, HistogramF64Base,
     MetricAttributable, MetricAttributes, MetricParameters, NewAttributes, OrderedPromLabelSet,
@@ -460,7 +460,7 @@ pub struct CorePrometheusMeter {
     registry: Registry,
     use_seconds_for_durations: bool,
     unit_suffix: bool,
-    bucket_overrides: temporal_sdk_core_api::telemetry::HistogramBucketOverrides,
+    bucket_overrides: squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides,
 }
 
 impl CorePrometheusMeter {
@@ -468,7 +468,7 @@ impl CorePrometheusMeter {
         registry: Registry,
         use_seconds_for_durations: bool,
         unit_suffix: bool,
-        bucket_overrides: temporal_sdk_core_api::telemetry::HistogramBucketOverrides,
+        bucket_overrides: squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides,
     ) -> Self {
         Self {
             registry,
@@ -639,7 +639,7 @@ mod tests {
     use super::*;
     use crate::telemetry::{TelemetryInstance, metrics::MetricsContext};
     use prometheus::{Encoder, TextEncoder};
-    use temporal_sdk_core_api::telemetry::{
+    use squads_temporal_sdk_core_api::telemetry::{
         METRIC_PREFIX,
         metrics::{MetricKeyValue, NewAttributes},
     };
@@ -651,7 +651,7 @@ mod tests {
             registry.clone(),
             false,
             false,
-            temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
+            squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
         );
 
         let counter = meter.counter(MetricParameters {
@@ -691,7 +691,7 @@ mod tests {
             registry.clone(),
             false,
             false,
-            temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
+            squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
         );
 
         let base_attrs = meter.new_attributes(NewAttributes::new(vec![
@@ -730,7 +730,7 @@ mod tests {
             registry.clone(),
             false,
             false,
-            temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
+            squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
         );
 
         let histogram_ms = meter_ms.histogram_duration(MetricParameters {
@@ -760,7 +760,7 @@ mod tests {
             registry_s.clone(),
             true,
             false,
-            temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
+            squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
         );
 
         let histogram_s = meter_s.histogram_duration(MetricParameters {
@@ -792,7 +792,7 @@ mod tests {
             registry.clone(),
             false,
             false,
-            temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
+            squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
         );
         let counter = meter.counter(MetricParameters {
             name: "no_labels".into(),
@@ -813,7 +813,7 @@ mod tests {
             registry.clone(),
             false,
             false,
-            temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
+            squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
         );
         let telem_instance = TelemetryInstance::new(
             None,
@@ -844,7 +844,7 @@ mod tests {
             registry.clone(),
             false,
             false,
-            temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
+            squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
         );
         let dashes = meter.counter(MetricParameters {
             name: "dash-in-name".into(),
@@ -865,7 +865,7 @@ mod tests {
             registry.clone(),
             false,
             false,
-            temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
+            squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides::default(),
         );
         let dashes = meter.counter(MetricParameters {
             name: "not@permitted:symbols".into(),

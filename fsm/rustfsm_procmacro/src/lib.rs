@@ -538,7 +538,7 @@ impl StateMachineDefinition {
                     quote! { _ => {
                         // Restore state in event the transition doesn't match
                         self.state = #occupied_current_state;
-                        return Err(::rustfsm::MachineError::InvalidTransition)
+                        return Err(::squads_rustfsm::MachineError::InvalidTransition)
                     } },
                 ));
             quote! {
@@ -548,14 +548,14 @@ impl StateMachineDefinition {
             }
         }).chain(std::iter::once(
             quote! {
-                None => Err(::rustfsm::MachineError::InvalidTransition)
+                None => Err(::squads_rustfsm::MachineError::InvalidTransition)
             }
         )).collect();
 
         let viz_str = self.visualize();
 
         let trait_impl = quote! {
-            impl ::rustfsm::StateMachine for #name {
+            impl ::squads_rustfsm::StateMachine for #name {
                 type Error = #err_type;
                 type State = #state_enum_name;
                 type SharedState = #shared_state_type;
@@ -568,7 +568,7 @@ impl StateMachineDefinition {
 
                 fn on_event(&mut self, event: #events_enum_name)
                   -> ::core::result::Result<::std::vec::Vec<Self::Command>,
-                                            ::rustfsm::MachineError<Self::Error>> {
+                                            ::squads_rustfsm::MachineError<Self::Error>> {
                     let taken_state = self.state.take();
                     match taken_state {
                         #(#state_branches),*

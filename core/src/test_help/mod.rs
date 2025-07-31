@@ -32,12 +32,12 @@ use std::{
     time::Duration,
 };
 use temporal_sdk::interceptors::FailOnNondeterminismInterceptor;
-use temporal_sdk_core_api::{
+use squads_temporal_sdk_core_api::{
     Worker as WorkerTrait,
     errors::PollError,
     worker::{PollerBehavior, WorkerVersioningStrategy},
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         workflow_activation::{WorkflowActivation, workflow_activation_job},
         workflow_commands::workflow_command,

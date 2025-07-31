@@ -1,7 +1,7 @@
 use crate::{InterceptedMetricsSvc, RawClientLike, WorkflowService};
 use anyhow::{anyhow, bail};
 use std::{fmt::Debug, marker::PhantomData};
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::FromPayloadsExt,
     temporal::api::{
         common::v1::{Payload, WorkflowExecution},

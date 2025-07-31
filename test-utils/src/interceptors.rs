@@ -4,8 +4,8 @@ use std::{
     collections::VecDeque,
     sync::atomic::{AtomicBool, Ordering},
 };
-use temporal_sdk::interceptors::WorkerInterceptor;
-use temporal_sdk_core_protos::coresdk::workflow_activation::WorkflowActivation;
+use squads_temporal_sdk::interceptors::WorkerInterceptor;
+use squads_temporal_sdk_core_protos::coresdk::workflow_activation::WorkflowActivation;
 
 #[derive(Default)]
 pub struct ActivationAssertionsInterceptor {

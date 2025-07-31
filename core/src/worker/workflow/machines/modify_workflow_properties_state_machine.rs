@@ -3,8 +3,8 @@ use crate::worker::workflow::{
     WFMachinesError,
     machines::{EventInfo, HistEventData, WFMachinesAdapter},
 };
-use rustfsm::{StateMachine, TransitionResult, fsm};
-use temporal_sdk_core_protos::{
+use squads_rustfsm::{StateMachine, TransitionResult, fsm};
+use squads_temporal_sdk_core_protos::{
     coresdk::workflow_commands::ModifyWorkflowProperties,
     temporal::api::enums::v1::{CommandType, EventType},
 };
@@ -108,7 +108,7 @@ mod tests {
         test_help::{MockPollCfg, build_fake_sdk},
     };
     use temporal_sdk::WfContext;
-    use temporal_sdk_core_protos::{
+    use squads_temporal_sdk_core_protos::{
         DEFAULT_WORKFLOW_TYPE,
         temporal::api::{
             command::v1::{Command, command},

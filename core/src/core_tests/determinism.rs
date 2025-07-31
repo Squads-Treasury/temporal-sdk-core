@@ -8,11 +8,11 @@ use std::{
     sync::atomic::{AtomicBool, AtomicUsize, Ordering},
     time::Duration,
 };
-use temporal_client::WorkflowOptions;
+use squads_temporal_client::WorkflowOptions;
 use temporal_sdk::{
     ActivityOptions, ChildWorkflowOptions, LocalActivityOptions, WfContext, WorkflowResult,
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     DEFAULT_ACTIVITY_TYPE, TestHistoryBuilder,
     temporal::api::{
         enums::v1::{EventType, WorkflowTaskFailedCause},

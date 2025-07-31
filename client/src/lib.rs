@@ -20,7 +20,7 @@ pub use crate::{
 };
 pub use metrics::{LONG_REQUEST_LATENCY_HISTOGRAM_NAME, REQUEST_LATENCY_HISTOGRAM_NAME};
 pub use raw::{CloudService, HealthService, OperatorService, TestService, WorkflowService};
-pub use temporal_sdk_core_protos::temporal::api::{
+pub use squads_temporal_sdk_core_protos::temporal::api::{
     enums::v1::ArchivalState,
     filter::v1::{StartTimeFilter, StatusFilter, WorkflowExecutionFilter, WorkflowTypeFilter},
     workflowservice::v1::{
@@ -51,8 +51,8 @@ use std::{
     sync::{Arc, OnceLock},
     time::{Duration, Instant},
 };
-use temporal_sdk_core_api::telemetry::metrics::TemporalMeter;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::telemetry::metrics::TemporalMeter;
+use squads_temporal_sdk_core_protos::{
     TaskToken,
     coresdk::IntoPayloadsExt,
     grpc::health::v1::health_client::HealthClient,

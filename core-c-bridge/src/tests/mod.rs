@@ -5,7 +5,7 @@ use crate::tests::utils::{
 use context::Context;
 use prost::Message;
 use std::sync::Arc;
-use temporal_sdk_core_protos::temporal::api::workflowservice::v1::{
+use squads_temporal_sdk_core_protos::temporal::api::workflowservice::v1::{
     GetSystemInfoRequest, GetSystemInfoResponse,
 };
 

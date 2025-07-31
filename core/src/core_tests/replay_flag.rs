@@ -8,8 +8,8 @@ use crate::{
 use rstest::{fixture, rstest};
 use std::{collections::VecDeque, time::Duration};
 use temporal_sdk::{WfContext, Worker, WorkflowFunction};
-use temporal_sdk_core_api::Worker as CoreWorker;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::Worker as CoreWorker;
+use squads_temporal_sdk_core_protos::{
     DEFAULT_WORKFLOW_TYPE, TestHistoryBuilder,
     coresdk::{
         workflow_activation::{WorkflowActivationJob, workflow_activation_job},

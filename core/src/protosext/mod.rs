@@ -13,7 +13,7 @@ use std::{
     fmt::{Debug, Display, Formatter},
     time::{Duration, SystemTime},
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     constants::{LOCAL_ACTIVITY_MARKER_NAME, PATCH_MARKER_NAME},
     coresdk::{
         activity_result::{activity_execution_result, activity_execution_result::Status},

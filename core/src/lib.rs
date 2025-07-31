@@ -30,15 +30,15 @@ mod core_tests;
 #[macro_use]
 mod test_help;
 
-pub(crate) use temporal_sdk_core_api::errors;
+pub(crate) use squads_temporal_sdk_core_api::errors;
 
 pub use pollers::{
     Client, ClientOptions, ClientOptionsBuilder, ClientTlsConfig, RetryClient, RetryConfig,
     TlsConfig, WorkflowClientTrait,
 };
-pub use temporal_sdk_core_api as api;
-pub use temporal_sdk_core_protos as protos;
-pub use temporal_sdk_core_protos::TaskToken;
+pub use squads_temporal_sdk_core_api as api;
+pub use squads_temporal_sdk_core_protos as protos;
+pub use squads_temporal_sdk_core_protos::TaskToken;
 pub use url::Url;
 pub use worker::{
     FixedSizeSlotSupplier, RealSysInfo, ResourceBasedSlotsOptions,
@@ -62,13 +62,13 @@ use crate::{
 use anyhow::bail;
 use futures_util::Stream;
 use std::sync::{Arc, OnceLock};
-use temporal_client::{ConfiguredClient, NamespacedClient, TemporalServiceClientWithMetrics};
-use temporal_sdk_core_api::{
+use squads_temporal_client::{ConfiguredClient, NamespacedClient, TemporalServiceClientWithMetrics};
+use squads_temporal_sdk_core_api::{
     Worker as WorkerTrait,
     errors::{CompleteActivityError, PollError},
     telemetry::TelemetryOptions,
 };
-use temporal_sdk_core_protos::coresdk::ActivityHeartbeat;
+use squads_temporal_sdk_core_protos::coresdk::ActivityHeartbeat;
 
 /// Initialize a worker bound to a task queue.
 ///

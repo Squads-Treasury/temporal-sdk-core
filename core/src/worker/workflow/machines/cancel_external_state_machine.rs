@@ -3,9 +3,9 @@ use super::{
     workflow_machines::MachineResponse,
 };
 use crate::worker::workflow::machines::HistEventData;
-use rustfsm::{StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{StateMachine, TransitionResult, fsm};
 use std::convert::TryFrom;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         common::NamespacedWorkflowExecution,
         workflow_activation::ResolveRequestCancelExternalWorkflow,
@@ -219,7 +219,7 @@ mod tests {
         test_help::{MockPollCfg, build_fake_sdk},
     };
     use temporal_sdk::{WfContext, WorkflowResult};
-    use temporal_sdk_core_protos::DEFAULT_WORKFLOW_TYPE;
+    use squads_temporal_sdk_core_protos::DEFAULT_WORKFLOW_TYPE;
 
     async fn cancel_sender(ctx: WfContext) -> WorkflowResult<()> {
         let res = ctx

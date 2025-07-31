@@ -3,11 +3,11 @@ use crate::runtime::{Runtime, temporal_core_byte_array_free};
 use crate::{ByteArray, CancellationToken};
 use std::collections::HashMap;
 use std::ops::Deref;
-use temporal_client::{ClientOptions, ClientOptionsBuilder};
-use temporal_sdk_core::ephemeral_server::{
+use squads_temporal_client::{ClientOptions, ClientOptionsBuilder};
+use squads_temporal_sdk_core::ephemeral_server::{
     TemporalDevServerConfig, TemporalDevServerConfigBuilder,
 };
-use temporal_sdk_core_test_utils::default_cached_download;
+use squads_temporal_sdk_core_test_utils::default_cached_download;
 use url::Url;
 
 pub fn byte_array_to_vec(runtime: *mut Runtime, byte_array: *const ByteArray) -> Option<Vec<u8>> {

@@ -7,7 +7,7 @@ use std::{
     collections::HashMap,
     sync::mpsc::{self, Receiver, Sender},
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::workflow_activation::{WorkflowActivationJob, start_workflow_from_attribs},
     temporal::api::{common::v1::Payload, history::v1::WorkflowExecutionStartedEventAttributes},
     utilities::TryIntoOrNone,

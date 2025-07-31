@@ -9,8 +9,8 @@ use crate::{
         },
     },
 };
-use rustfsm::{StateMachine, TransitionResult, fsm};
-use temporal_sdk_core_protos::{
+use squads_rustfsm::{StateMachine, TransitionResult, fsm};
+use squads_temporal_sdk_core_protos::{
     coresdk::workflow_commands::UpsertWorkflowSearchAttributes,
     temporal::api::{
         command::v1::{UpsertWorkflowSearchAttributesCommandAttributes, command},
@@ -187,11 +187,11 @@ mod tests {
             workflow::machines::patch_state_machine::VERSION_SEARCH_ATTR_KEY,
         },
     };
-    use rustfsm::StateMachine;
+    use squads_rustfsm::StateMachine;
     use std::collections::HashMap;
     use temporal_sdk::WfContext;
-    use temporal_sdk_core_api::Worker;
-    use temporal_sdk_core_protos::{
+    use squads_temporal_sdk_core_api::Worker;
+    use squads_temporal_sdk_core_protos::{
         DEFAULT_WORKFLOW_TYPE,
         coresdk::{
             AsJsonPayloadExt,

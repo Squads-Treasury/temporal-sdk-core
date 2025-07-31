@@ -6,7 +6,7 @@ use std::{
     sync::Arc,
     time::Duration,
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk,
     coresdk::{ActivitySlotInfo, LocalActivitySlotInfo, NexusSlotInfo, WorkflowSlotInfo},
     temporal,

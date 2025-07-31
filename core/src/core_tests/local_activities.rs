@@ -19,12 +19,12 @@ use std::{
     },
     time::{Duration, Instant, SystemTime},
 };
-use temporal_client::WorkflowOptions;
+use squads_temporal_client::WorkflowOptions;
 use temporal_sdk::{
     ActContext, ActivityError, LocalActivityOptions, WfContext, WorkflowFunction, WorkflowResult,
 };
-use temporal_sdk_core_api::{Worker, errors::PollError};
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::{Worker, errors::PollError};
+use squads_temporal_sdk_core_protos::{
     DEFAULT_ACTIVITY_TYPE,
     coresdk::{
         ActivityTaskCompletion, AsJsonPayloadExt,

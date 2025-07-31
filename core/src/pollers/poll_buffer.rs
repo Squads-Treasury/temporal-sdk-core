@@ -18,11 +18,11 @@ use std::{
     },
     time::Duration,
 };
-use temporal_client::NoRetryOnMatching;
-use temporal_sdk_core_api::worker::{
+use squads_temporal_client::NoRetryOnMatching;
+use squads_temporal_sdk_core_api::worker::{
     ActivitySlotKind, NexusSlotKind, PollerBehavior, SlotKind, WorkflowSlotKind,
 };
-use temporal_sdk_core_protos::temporal::api::{
+use squads_temporal_sdk_core_protos::temporal::api::{
     taskqueue::v1::PollerScalingDecision,
     workflowservice::v1::{
         PollActivityTaskQueueResponse, PollNexusTaskQueueResponse, PollWorkflowTaskQueueResponse,

@@ -7,13 +7,13 @@ use crate::worker::heartbeat::HeartbeatFn;
 use parking_lot::RwLock;
 use std::sync::OnceLock;
 use std::{sync::Arc, time::Duration};
-use temporal_client::{
+use squads_temporal_client::{
     Client, IsWorkerTaskLongPoll, Namespace, NamespacedClient, NoRetryOnMatching, RetryClient,
     SlotManager, WorkflowService,
 };
-use temporal_sdk_core_api::worker::WorkerVersioningStrategy;
-use temporal_sdk_core_protos::temporal::api::worker::v1::WorkerHeartbeat;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::worker::WorkerVersioningStrategy;
+use squads_temporal_sdk_core_protos::temporal::api::worker::v1::WorkerHeartbeat;
+use squads_temporal_sdk_core_protos::{
     TaskToken,
     coresdk::{workflow_commands::QueryResult, workflow_completion},
     temporal::api::{

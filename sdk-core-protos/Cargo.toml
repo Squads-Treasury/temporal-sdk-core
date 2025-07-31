@@ -1,5 +1,5 @@
 [package]
-name = "temporal-sdk-core-protos"
+name = "squads-temporal-sdk-core-protos"
 version = "0.1.0"
 edition = "2024"
 authors = ["Spencer Judge <spencer@temporal.io>"]

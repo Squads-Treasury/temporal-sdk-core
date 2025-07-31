@@ -6,8 +6,8 @@ use crate::{
     },
     worker::client::mocks::mock_worker_client,
 };
-use temporal_sdk_core_api::Worker;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::Worker;
+use squads_temporal_sdk_core_protos::{
     DEFAULT_ACTIVITY_TYPE, TestHistoryBuilder,
     coresdk::{
         workflow_activation::{WorkflowActivationJob, workflow_activation_job},

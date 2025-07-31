@@ -9,9 +9,9 @@ use crate::{
     internal_flags::CoreInternalFlags,
     worker::workflow::{InternalFlagsRef, machines::HistEventData},
 };
-use rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
 use std::convert::{TryFrom, TryInto};
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         activity_result::{self as ar, ActivityResolution, Cancellation, activity_resolution},
         workflow_activation::ResolveActivity,
@@ -809,7 +809,7 @@ mod test {
     };
     use std::{cell::RefCell, mem::discriminant, rc::Rc};
     use temporal_sdk::{ActivityOptions, CancellableFuture, WfContext, WorkflowFunction};
-    use temporal_sdk_core_protos::{
+    use squads_temporal_sdk_core_protos::{
         DEFAULT_WORKFLOW_TYPE,
         coresdk::workflow_activation::{WorkflowActivationJob, workflow_activation_job},
     };

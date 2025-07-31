@@ -297,7 +297,7 @@ mod tests {
     use assert_matches::assert_matches;
     use backoff::Clock;
     use std::{ops::Add, time::Instant};
-    use temporal_sdk_core_protos::temporal::api::workflowservice::v1::{
+    use squads_temporal_sdk_core_protos::temporal::api::workflowservice::v1::{
         PollActivityTaskQueueRequest, PollNexusTaskQueueRequest, PollWorkflowTaskQueueRequest,
     };
     use tonic::{IntoRequest, Status};

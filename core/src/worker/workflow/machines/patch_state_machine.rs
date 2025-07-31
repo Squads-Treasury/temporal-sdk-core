@@ -32,12 +32,12 @@ use crate::{
     },
 };
 use anyhow::Context;
-use rustfsm::{StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{StateMachine, TransitionResult, fsm};
 use std::{
     collections::{BTreeSet, HashMap},
     convert::TryFrom,
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     constants::PATCH_MARKER_NAME,
     coresdk::{AsJsonPayloadExt, common::build_has_change_marker_details},
     temporal::api::{
@@ -279,7 +279,7 @@ mod tests {
         time::Duration,
     };
     use temporal_sdk::{ActivityOptions, WfContext};
-    use temporal_sdk_core_protos::{
+    use squads_temporal_sdk_core_protos::{
         DEFAULT_WORKFLOW_TYPE,
         constants::PATCH_MARKER_NAME,
         coresdk::{

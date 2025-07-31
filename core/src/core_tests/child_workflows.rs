@@ -6,10 +6,10 @@ use crate::{
     },
     worker::client::mocks::mock_worker_client,
 };
-use temporal_client::WorkflowOptions;
+use squads_temporal_client::WorkflowOptions;
 use temporal_sdk::{ChildWorkflowOptions, Signal, WfContext, WorkflowResult};
-use temporal_sdk_core_api::Worker;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::Worker;
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         child_workflow::{ChildWorkflowCancellationType, child_workflow_result},
         workflow_activation::{WorkflowActivationJob, workflow_activation_job},

@@ -5,9 +5,9 @@ use crate::{
 };
 use itertools::Itertools;
 use prost::EncodeError;
-use rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{MachineError, StateMachine, TransitionResult, fsm};
 use std::convert::TryFrom;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         workflow_activation::DoUpdate,
         workflow_commands::{UpdateResponse, update_response},

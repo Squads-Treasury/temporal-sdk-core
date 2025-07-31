@@ -7,7 +7,7 @@ use crate::{
 };
 use rstest::rstest;
 use std::time::Duration;
-use temporal_sdk_core_protos::coresdk::{
+use squads_temporal_sdk_core_protos::coresdk::{
     workflow_activation::{WorkflowActivationJob, workflow_activation_job},
     workflow_commands::{
         CancelWorkflowExecution, CompleteWorkflowExecution, FailWorkflowExecution,

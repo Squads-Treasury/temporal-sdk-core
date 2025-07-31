@@ -16,11 +16,11 @@ use std::{
     sync::{Arc, OnceLock},
     task::{Context, Poll},
 };
-use temporal_sdk_core_api::worker::{PollerBehavior, WorkerConfig};
-pub use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::worker::{PollerBehavior, WorkerConfig};
+pub use squads_temporal_sdk_core_protos::{
     DEFAULT_WORKFLOW_TYPE, HistoryInfo, TestHistoryBuilder, default_wes_attribs,
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::workflow_activation::remove_from_cache::EvictionReason,
     temporal::api::{
         common::v1::WorkflowExecution,

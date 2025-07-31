@@ -42,7 +42,7 @@ use anyhow::anyhow;
 use futures_util::{Stream, StreamExt, future::abortable, stream, stream::BoxStream};
 use itertools::Itertools;
 use prost_types::TimestampError;
-use rustfsm::MachineError;
+use squads_rustfsm::MachineError;
 use std::{
     cell::RefCell,
     collections::VecDeque,
@@ -55,12 +55,12 @@ use std::{
     thread,
     time::{Duration, Instant},
 };
-use temporal_client::MESSAGE_TOO_LARGE_KEY;
-use temporal_sdk_core_api::{
+use squads_temporal_client::MESSAGE_TOO_LARGE_KEY;
+use squads_temporal_sdk_core_api::{
     errors::{CompleteWfError, PollError},
     worker::{ActivitySlotKind, WorkerConfig, WorkflowSlotKind},
 };
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     TaskToken,
     coresdk::{
         workflow_activation::{
@@ -391,7 +391,7 @@ impl Workflows {
                         Err(e) if e.metadata().contains_key(MESSAGE_TOO_LARGE_KEY) => {
                             let failure = Failure {
                                 failure: Some(
-                                    temporal_sdk_core_protos::temporal::api::failure::v1::Failure {
+                                    squads_temporal_sdk_core_protos::temporal::api::failure::v1::Failure {
                                         message: "GRPC Message too large".to_string(),
                                         failure_info: Some(FailureInfo::ApplicationFailureInfo(
                                             ApplicationFailureInfo {
@@ -1425,7 +1425,7 @@ impl WFMachinesError {
     fn as_failure(&self) -> Failure {
         Failure {
             failure: Some(
-                temporal_sdk_core_protos::temporal::api::failure::v1::Failure::application_failure(
+                squads_temporal_sdk_core_protos::temporal::api::failure::v1::Failure::application_failure(
                     self.to_string(),
                     false,
                 ),
@@ -1543,7 +1543,7 @@ fn prepare_to_ship_activation(wfa: &mut WorkflowActivation) {
 mod tests {
     use super::*;
     use itertools::Itertools;
-    use temporal_sdk_core_protos::coresdk::workflow_activation::SignalWorkflow;
+    use squads_temporal_sdk_core_protos::coresdk::workflow_activation::SignalWorkflow;
 
     #[test]
     fn jobs_sort() {

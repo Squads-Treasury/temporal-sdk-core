@@ -6,14 +6,14 @@ use std::{
     sync::Arc,
     time::Duration,
 };
-use temporal_sdk_core_api::telemetry::metrics::{
+use squads_temporal_sdk_core_api::telemetry::metrics::{
     BufferAttributes, BufferInstrumentRef, CoreMeter, Counter, CounterBase, Gauge, GaugeBase,
     GaugeF64, GaugeF64Base, Histogram, HistogramBase, HistogramDuration, HistogramDurationBase,
     HistogramF64, HistogramF64Base, LazyBufferInstrument, MetricAttributable, MetricAttributes,
     MetricCallBufferer, MetricEvent, MetricKeyValue, MetricKind, MetricParameters, MetricUpdateVal,
     NewAttributes, NoOpCoreMeter,
 };
-use temporal_sdk_core_protos::temporal::api::{
+use squads_temporal_sdk_core_protos::temporal::api::{
     enums::v1::WorkflowTaskFailedCause, failure::v1::Failure,
 };
 
@@ -1065,7 +1065,7 @@ impl<CM: CoreMeter> CoreMeter for PrefixedMetricsMeter<CM> {
 mod tests {
     use super::*;
     use std::any::Any;
-    use temporal_sdk_core_api::telemetry::{
+    use squads_temporal_sdk_core_api::telemetry::{
         METRIC_PREFIX,
         metrics::{BufferInstrumentRef, CustomMetricAttributes},
     };

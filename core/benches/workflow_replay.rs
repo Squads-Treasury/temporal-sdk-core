@@ -7,10 +7,10 @@ use std::{
 };
 use temporal_sdk::{WfContext, WorkflowFunction};
 use temporal_sdk_core::{CoreRuntime, replay::HistoryForReplay};
-use temporal_sdk_core_api::telemetry::metrics::{
+use squads_temporal_sdk_core_api::telemetry::metrics::{
     MetricKeyValue, MetricParametersBuilder, NewAttributes,
 };
-use temporal_sdk_core_protos::DEFAULT_WORKFLOW_TYPE;
+use squads_temporal_sdk_core_protos::DEFAULT_WORKFLOW_TYPE;
 use temporal_sdk_core_test_utils::{
     DONT_AUTO_INIT_INTEG_TELEM, canned_histories, prom_metrics, replay_sdk_worker,
 };

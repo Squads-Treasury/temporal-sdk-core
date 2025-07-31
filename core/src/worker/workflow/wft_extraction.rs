@@ -11,8 +11,8 @@ use crate::{
 };
 use futures_util::{FutureExt, Stream, StreamExt, stream, stream::PollNext};
 use std::{future, sync::Arc};
-use temporal_sdk_core_api::worker::WorkflowSlotKind;
-use temporal_sdk_core_protos::{TaskToken, coresdk::WorkflowSlotInfo};
+use squads_temporal_sdk_core_api::worker::WorkflowSlotKind;
+use squads_temporal_sdk_core_protos::{TaskToken, coresdk::WorkflowSlotInfo};
 use tracing::Span;
 
 /// Transforms incoming validated WFTs and history fetching requests into [PermittedWFT]s ready

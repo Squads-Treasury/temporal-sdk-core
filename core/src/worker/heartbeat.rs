@@ -5,8 +5,8 @@ use parking_lot::Mutex;
 use prost_types::Duration as PbDuration;
 use std::sync::{Arc, OnceLock};
 use std::time::{Duration, SystemTime};
-use temporal_sdk_core_api::worker::WorkerConfig;
-use temporal_sdk_core_protos::temporal::api::worker::v1::{WorkerHeartbeat, WorkerHostInfo};
+use squads_temporal_sdk_core_api::worker::WorkerConfig;
+use squads_temporal_sdk_core_protos::temporal::api::worker::v1::{WorkerHeartbeat, WorkerHostInfo};
 use tokio::sync::Notify;
 use tokio::task::JoinHandle;
 use tokio::time::MissedTickBehavior;
@@ -173,8 +173,8 @@ mod tests {
     use crate::worker::client::mocks::mock_worker_client;
     use std::sync::Arc;
     use std::time::Duration;
-    use temporal_sdk_core_api::worker::PollerBehavior;
-    use temporal_sdk_core_protos::temporal::api::workflowservice::v1::RecordWorkerHeartbeatResponse;
+    use squads_temporal_sdk_core_api::worker::PollerBehavior;
+    use squads_temporal_sdk_core_protos::temporal::api::workflowservice::v1::RecordWorkerHeartbeatResponse;
 
     #[tokio::test]
     async fn worker_heartbeat() {

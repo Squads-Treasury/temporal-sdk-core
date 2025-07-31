@@ -1,5 +1,5 @@
 use std::time::Duration;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     temporal::api::{common::v1::RetryPolicy, failure::v1::ApplicationFailureInfo},
     utilities::TryIntoOrNone,
 };

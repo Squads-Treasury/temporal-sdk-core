@@ -17,7 +17,7 @@ use std::{
     sync::{Arc, LazyLock},
     task::{Context, Poll},
 };
-use temporal_sdk_core_protos::temporal::api::{
+use squads_temporal_sdk_core_protos::temporal::api::{
     enums::v1::EventType,
     history::v1::{
         History, HistoryEvent, WorkflowTaskCompletedEventAttributes, history_event::Attributes,
@@ -807,9 +807,9 @@ mod tests {
     };
     use futures_util::{StreamExt, TryStreamExt};
     use std::sync::atomic::{AtomicUsize, Ordering};
-    use temporal_client::WorkflowOptions;
+    use squads_temporal_client::WorkflowOptions;
     use temporal_sdk::WfContext;
-    use temporal_sdk_core_protos::{
+    use squads_temporal_sdk_core_protos::{
         DEFAULT_WORKFLOW_TYPE,
         temporal::api::{
             common::v1::WorkflowExecution, enums::v1::WorkflowTaskFailedCause,

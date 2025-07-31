@@ -14,8 +14,8 @@ use crate::{
 };
 use futures_util::{stream, stream::StreamExt};
 use std::{cell::RefCell, time::Duration};
-use temporal_sdk_core_api::{Worker, worker::PollerBehavior};
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::{Worker, worker::PollerBehavior};
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         workflow_activation::workflow_activation_job,
         workflow_commands::{CompleteWorkflowExecution, StartTimer, workflow_command},

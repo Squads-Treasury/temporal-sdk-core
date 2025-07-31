@@ -11,7 +11,7 @@ use crate::{
     },
     worker::WorkerConfig,
 };
-use temporal_sdk_core_protos::coresdk::{
+use squads_temporal_sdk_core_protos::coresdk::{
     ActivityHeartbeat, ActivityTaskCompletion,
     activity_task::ActivityTask,
     nexus::{NexusTask, NexusTaskCompletion},

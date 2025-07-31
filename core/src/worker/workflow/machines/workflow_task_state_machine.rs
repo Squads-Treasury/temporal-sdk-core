@@ -2,12 +2,12 @@
 
 use super::{EventInfo, WFMachinesAdapter, WFMachinesError, workflow_machines::MachineResponse};
 use crate::worker::workflow::machines::HistEventData;
-use rustfsm::{StateMachine, TransitionResult, fsm};
+use squads_rustfsm::{StateMachine, TransitionResult, fsm};
 use std::{
     convert::{TryFrom, TryInto},
     time::SystemTime,
 };
-use temporal_sdk_core_protos::temporal::api::{
+use squads_temporal_sdk_core_protos::temporal::api::{
     enums::v1::{CommandType, EventType, WorkflowTaskFailedCause},
     history::v1::history_event::Attributes::WorkflowTaskFailedEventAttributes,
 };

@@ -8,8 +8,8 @@ use crate::{
 };
 use lru::LruCache;
 use std::{num::NonZeroUsize, rc::Rc, sync::Arc};
-use temporal_sdk_core_api::worker::WorkerConfig;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::worker::WorkerConfig;
+use squads_temporal_sdk_core_protos::{
     coresdk::workflow_activation::remove_from_cache::EvictionReason,
     temporal::api::workflowservice::v1::get_system_info_response,
 };

@@ -14,14 +14,14 @@ use std::sync::atomic::Ordering;
 use std::sync::{Arc, Mutex};
 use std::time::Duration;
 use std::time::UNIX_EPOCH;
-use temporal_sdk_core::CoreRuntime;
-use temporal_sdk_core::TokioRuntimeBuilder;
-use temporal_sdk_core::telemetry::{build_otlp_metric_exporter, start_prometheus_metric_exporter};
-use temporal_sdk_core_api::telemetry::HistogramBucketOverrides;
-use temporal_sdk_core_api::telemetry::MetricTemporality;
-use temporal_sdk_core_api::telemetry::metrics::CoreMeter;
-use temporal_sdk_core_api::telemetry::{CoreLog, CoreLogConsumer};
-use temporal_sdk_core_api::telemetry::{
+use squads_temporal_sdk_core::CoreRuntime;
+use squads_temporal_sdk_core::TokioRuntimeBuilder;
+use squads_temporal_sdk_core::telemetry::{build_otlp_metric_exporter, start_prometheus_metric_exporter};
+use squads_temporal_sdk_core_api::telemetry::HistogramBucketOverrides;
+use squads_temporal_sdk_core_api::telemetry::MetricTemporality;
+use squads_temporal_sdk_core_api::telemetry::metrics::CoreMeter;
+use squads_temporal_sdk_core_api::telemetry::{CoreLog, CoreLogConsumer};
+use squads_temporal_sdk_core_api::telemetry::{
     Logger, OtelCollectorOptionsBuilder, PrometheusExporterOptionsBuilder,
     TelemetryOptions as CoreTelemetryOptions, TelemetryOptionsBuilder,
 };

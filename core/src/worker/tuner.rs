@@ -8,7 +8,7 @@ pub use resource_based::{
 };
 
 use std::sync::Arc;
-use temporal_sdk_core_api::worker::{
+use squads_temporal_sdk_core_api::worker::{
     ActivitySlotKind, LocalActivitySlotKind, NexusSlotKind, SlotKind, SlotSupplier, WorkerConfig,
     WorkerTuner, WorkflowSlotKind,
 };

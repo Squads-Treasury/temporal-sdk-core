@@ -1,7 +1,7 @@
 use std::{collections::HashMap, time::Duration};
 
-use temporal_client::{Priority, WorkflowOptions};
-use temporal_sdk_core_protos::{
+use squads_temporal_client::{Priority, WorkflowOptions};
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         child_workflow::ChildWorkflowCancellationType,
         nexus::NexusOperationCancellationType,

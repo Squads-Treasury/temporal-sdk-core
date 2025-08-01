@@ -28,8 +28,8 @@ use std::{
     task::Poll,
     time::{Duration, SystemTime},
 };
-use temporal_sdk_core_api::worker::WorkerDeploymentVersion;
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_api::worker::WorkerDeploymentVersion;
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         activity_result::{ActivityResolution, activity_resolution},
         child_workflow::ChildWorkflowResult,

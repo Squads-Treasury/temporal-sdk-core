@@ -133,7 +133,7 @@ use futures::FutureExt;
 use futures::future::BoxFuture;
 use std::time::Duration;
 use std::{fmt::Debug, future::Future};
-use temporal_sdk_core_protos::coresdk::{
+use squads_temporal_sdk_core_protos::coresdk::{
     AsJsonPayloadExt, FromJsonPayloadExt, activity_result::activity_resolution,
     child_workflow::child_workflow_result,
 };
@@ -157,7 +157,7 @@ where
 
 /// Execute activity which takes [ActContext] and an argument and returns a [Result] with 'R'
 /// and [anyhow::Error] where 'R' implements [serde] traits for
-/// serialization into Temporal [Payload](temporal_sdk_core_protos::temporal::api::common::v1::Payload).
+/// serialization into Temporal [Payload](squads_temporal_sdk_core_protos::temporal::api::common::v1::Payload).
 /// Use [into_activity] to register the activity with the worker.
 pub async fn execute_activity<A, F, R>(
     ctx: &WfContext,
@@ -198,7 +198,7 @@ where
 
 /// Register child workflow which takes [WfContext] and an argument and returns a [Result] with 'R'
 /// and [anyhow::Error] where 'R' implements [serde] traits for
-/// serialization into Temporal [Payload](temporal_sdk_core_protos::temporal::api::common::v1::Payload).
+/// serialization into Temporal [Payload](squads_temporal_sdk_core_protos::temporal::api::common::v1::Payload).
 /// Use [execute_child_workflow] to execute the workflow in the workflow definition.
 pub fn into_workflow<A, F, R, O>(
     f: F,
@@ -217,7 +217,7 @@ where
 
 /// Execute child workflow which takes [WfContext] and an argument and returns a [Result] with 'R'
 /// and [anyhow::Error] where 'R' implements [serde] traits for
-/// serialization into Temporal [Payload](temporal_sdk_core_protos::temporal::api::common::v1::Payload).
+/// serialization into Temporal [Payload](squads_temporal_sdk_core_protos::temporal::api::common::v1::Payload).
 /// Use [into_workflow] to register the workflow with the worker
 pub async fn execute_child_workflow<A, F, R>(
     ctx: &WfContext,

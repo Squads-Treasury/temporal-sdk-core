@@ -11,7 +11,7 @@ pub mod registry {
 pub mod activity {
     pub use crate::{ActContext, ActExitValue, ActivityError};
     pub use serde::{Deserialize, Serialize};
-    pub use temporal_sdk_core_protos::temporal::api::failure::v1::Failure;
+    pub use squads_temporal_sdk_core_protos::temporal::api::failure::v1::Failure;
 }
 
 /// Workflow prelude
@@ -30,7 +30,7 @@ pub mod workflow {
         future::Future,
         time::Duration,
     };
-    pub use temporal_sdk_core_protos::{
+    pub use squads_temporal_sdk_core_protos::{
         coresdk::{
             AsJsonPayloadExt, FromPayloadsExt,
             activity_result::{self, activity_resolution},
@@ -45,8 +45,8 @@ pub mod workflow {
 #[allow(unused_imports)]
 pub mod worker {
     pub use crate::{Worker, sdk_client_options};
-    pub use temporal_sdk_core::{CoreRuntime, Url, init_worker};
-    pub use temporal_sdk_core_api::{
+    pub use squads_temporal_sdk_core::{CoreRuntime, Url, init_worker};
+    pub use squads_temporal_sdk_core_api::{
         errors::WorkflowErrorType,
         telemetry::TelemetryOptionsBuilder,
         worker::{
@@ -60,7 +60,7 @@ pub mod worker {
 #[allow(unused_imports)]
 pub mod client {
     pub use crate::sdk_client_options;
-    pub use temporal_client::{
+    pub use squads_temporal_client::{
         Client, RetryClient, WfClientExt, WorkflowClientTrait, WorkflowOptions,
     };
 }

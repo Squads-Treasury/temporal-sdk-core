@@ -10,8 +10,8 @@
 //! ```no_run
 //! use std::{str::FromStr, sync::Arc};
 //! use temporal_sdk::{sdk_client_options, ActContext, Worker};
-//! use temporal_sdk_core::{init_worker, Url, CoreRuntime};
-//! use temporal_sdk_core_api::{
+//! use squads_temporal_sdk_core::{init_worker, Url, CoreRuntime};
+//! use squads_temporal_sdk_core_api::{
 //!     worker::{WorkerConfigBuilder, WorkerVersioningStrategy},
 //!     telemetry::TelemetryOptionsBuilder
 //! };
@@ -57,7 +57,7 @@ mod workflow_context;
 mod workflow_future;
 
 pub use activity_context::ActContext;
-pub use temporal_client::Namespace;
+pub use squads_temporal_client::Namespace;
 use tracing::{Instrument, Span, field};
 pub use workflow_context::{
     ActivityOptions, CancellableFuture, ChildWorkflow, ChildWorkflowOptions, LocalActivityOptions,
@@ -83,10 +83,10 @@ use std::{
     sync::Arc,
     time::Duration,
 };
-use temporal_client::ClientOptionsBuilder;
-use temporal_sdk_core::Url;
-use temporal_sdk_core_api::{Worker as CoreWorker, errors::PollError};
-use temporal_sdk_core_protos::{
+use squads_temporal_client::ClientOptionsBuilder;
+use squads_temporal_sdk_core::Url;
+use squads_temporal_sdk_core_api::{Worker as CoreWorker, errors::PollError};
+use squads_temporal_sdk_core_protos::{
     TaskToken,
     coresdk::{
         ActivityTaskCompletion, AsJsonPayloadExt, FromJsonPayloadExt,

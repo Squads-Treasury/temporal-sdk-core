@@ -6,9 +6,9 @@ use std::{
     sync::Arc,
     time::{Duration as StdDuration, SystemTime},
 };
-use temporal_client::Priority;
-use temporal_sdk_core_api::Worker;
-use temporal_sdk_core_protos::{
+use squads_temporal_client::Priority;
+use squads_temporal_sdk_core_api::Worker;
+use squads_temporal_sdk_core_protos::{
     coresdk::{ActivityHeartbeat, activity_task},
     temporal::api::common::v1::{Payload, RetryPolicy, WorkflowExecution},
     utilities::TryIntoOrNone,

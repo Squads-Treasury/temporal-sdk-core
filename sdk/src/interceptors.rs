@@ -3,7 +3,7 @@
 use crate::Worker;
 use anyhow::bail;
 use std::sync::{Arc, OnceLock};
-use temporal_sdk_core_protos::{
+use squads_temporal_sdk_core_protos::{
     coresdk::{
         workflow_activation::{WorkflowActivation, remove_from_cache::EvictionReason},
         workflow_completion::WorkflowActivationCompletion,

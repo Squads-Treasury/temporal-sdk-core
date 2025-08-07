@@ -166,10 +166,10 @@ pub fn build_otlp_metric_exporter(
 #[derive(Debug)]
 pub struct CoreOtelMeter {
     pub meter: Meter,
-    use_seconds_for_durations: bool,
+    pub use_seconds_for_durations: bool,
     // we have to hold on to the provider otherwise otel automatically shuts it down on drop
     // for whatever crazy reason
-    _mp: SdkMeterProvider,
+    pub _mp: SdkMeterProvider,
 }
 
 impl CoreMeter for CoreOtelMeter {

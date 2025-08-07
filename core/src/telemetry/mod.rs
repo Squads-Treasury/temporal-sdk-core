@@ -4,7 +4,7 @@
 mod log_export;
 pub(crate) mod metrics;
 #[cfg(feature = "otel")]
-mod otel;
+pub mod otel;
 #[cfg(feature = "prom")]
 mod prometheus_meter;
 #[cfg(feature = "prom")]
@@ -21,7 +21,7 @@ pub use metrics::{
     WORKFLOW_TASK_SCHED_TO_START_LATENCY_HISTOGRAM_NAME,
 };
 #[cfg(feature = "otel")]
-pub use otel::build_otlp_metric_exporter;
+pub use otel::{build_otlp_metric_exporter, CoreOtelMeter};
 #[cfg(feature = "prom")]
 pub use prometheus_server::start_prometheus_metric_exporter;
 

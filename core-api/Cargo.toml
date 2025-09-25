@@ -34,7 +34,7 @@ url = "2.5"
 
 [dependencies.temporal-sdk-core-protos]
 path = "../sdk-core-protos"
-version = "0.1"
+version = "0.1.0"
 
 [lints]
 workspace = true

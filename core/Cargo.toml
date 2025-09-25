@@ -1,6 +1,6 @@
 [package]
 name = "temporal-sdk-core"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
     "Spencer Judge <spencer@temporal.io>",
     "Vitaly Arbuzov <vitaly@temporal.io>",
